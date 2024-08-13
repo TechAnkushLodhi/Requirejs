@@ -42,7 +42,7 @@ Magento 2 uses RequireJS for asynchronous module loading and dependency manageme
 ```
 
 **File: `app\code\Development\Maping\view\frontend\layout\default.xml`**
-``` xml
+```xml
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
@@ -51,7 +51,7 @@ Magento 2 uses RequireJS for asynchronous module loading and dependency manageme
         </referenceContainer>
     </body>
 </page>
-
+```
 
 **File: `app\code\Development\Maping\view\frontend\templates\test.phtml`**
 ```phtml
@@ -65,7 +65,7 @@ require(['replacementModule'], function(specialModule) {
     console.log(specialModule.message);
 });
 </script>
-
+```
 
 **File: `app\code\Development\Maping\view\frontend\web\js\original-module.js`**
 ```javascript
@@ -76,7 +76,7 @@ define([], function() {
         }
     };
 });
-
+```
 
 
 **File: `app\code\Development\Maping\view\frontend\web\js\replacement-module.js`**
@@ -88,7 +88,7 @@ define([], function() {
         }
     };
 });
-
+```
 
 
 **File: `app\code\Development\Maping\view\frontend\web\js\special-replacement.js`**
@@ -100,7 +100,7 @@ define(['originalModule'], function(or) {
         }
     };
 });
-
+```
 
 **File: `app\code\Development\Maping\view\frontend\requirejs-config.js`**
 ```javascript
@@ -119,4 +119,4 @@ var config = {
         }
     }
 };
-
+```

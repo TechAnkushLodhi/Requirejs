@@ -290,7 +290,7 @@ window.exampleLib = {
 
 
 
-# 2. `paths`
+# 3. `paths`
 ## Description:
 * In RequireJS, the paths configuration is used to define the paths to the JavaScript files for the modules. This allows you to specify the location of modules and provides a way to alias module paths.
 

@@ -202,6 +202,83 @@ var config = {
 
 ```
 
+- **File: `app/code/Development/Shim/view/frontend/web/js/dependency-one.js`**
+```javascript
+define([], function() {
+    return {
+        name: 'DependencyOne'
+    };
+});
+```
+- **File: `app/code/Development/Shim/view/frontend/web/js/dependency-two.js`**
+```javascript
+define([], function() {
+    return {
+        name: 'DependencyTwo'
+    };
+});
+```
+
+- **File: `app/code/Development/Shim/view/frontend/web/js/deps-main.js`**
+```javascript
+define(['DependencyOne', 'DependencyTwo'], function(DependencyOne, DependencyTwo) {
+    return {
+        init: function() {
+            console.log('DepsMain initialized with:', DependencyOne.name, DependencyTwo.name);
+        }
+    };
+});
+```
+
+- **File: `app/code/Development/Shim/etc/module.xml`**
+```xml
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Development_Shim" setup_version="1.0.0"/>
+</config>
+```
+
+**File: `app\code\Development\Shim\registration.php`**
+```php
+    <?php
+    \Magento\Framework\Component\ComponentRegistrar::register(
+        \Magento\Framework\Component\ComponentRegistrar::MODULE,
+        'Development_Shim',
+        __DIR__
+    );
+```
+
+**File: `app\code\Development\Shim\view\frontend\layout\default.xml`**
+
+```xml
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="shim_test" template="Development_Shim::test.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
+```
+
+**File: `app\code\Development\Shim\view\frontend\templates\test.phtml`**
+```phtml
+    <h1>This is shim</h1>
+
+  <script type="text/javascript">
+    require(['DependencyOne'], function(DependencyOne) {
+        console.log(DependencyOne.name);
+    });
+    require(['DependencyTwo'], function(DependencyTwo) {
+        console.log(DependencyTwo.name);
+    });
+    require(['DepsMain'], function(DepsMain) {
+        DepsMain.init(); // Initialize the module
+    });
+</script>
+```
+
 #### 2. `Global Variables:`
 * If your library defines global variables (e.g., window.exampleLib), you can use the exports property in the shim configuration to specify the name of the global variable. This ensures that RequireJS correctly identifies and uses the global variable when your module is loaded.
 

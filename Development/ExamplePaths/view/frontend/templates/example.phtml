@@ -1,0 +1,11 @@
+<div>
+    <h1>Example Paths Module</h1>
+    <button id="example-button">Click Me</button>
+</div>
+<script type="text/javascript">
+    require(['exampleModule'], function(exampleModule) {
+        document.getElementById('example-button').addEventListener('click', function() {
+            exampleModule.init();
+        });
+    });
+</script>

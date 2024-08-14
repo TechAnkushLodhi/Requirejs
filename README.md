@@ -98,9 +98,7 @@ require(['replacementModule'], function(specialModule) {
 ```javascript
 define([], function() {
     return {
-        greet: function() {
-            console.log('Hello from the original module!');
-        }
+       message: 'This is the original module!'
     };
 });
 ```
@@ -110,9 +108,7 @@ define([], function() {
 ```javascript
 define([], function() {
     return {
-        greet: function() {
-            console.log('Hello from the replacement module!');
-        }
+        message:'Hello from the replacement module!'
     };
 });
 ```
@@ -120,11 +116,9 @@ define([], function() {
 
 **File: `app\code\Development\Maping\view\frontend\web\js\special-replacement.js`**
 ```javascript
-define(['originalModule'], function(or) {
+define(['originalModule'], function(originalModule) {
     return {
-        greet: function() {
-            console.log('Hello from the special replacement module!');
-        }
+        message: 'Hello from the special replacement module! : From By original module ' + originalModule.message
     };
 });
 ```

@@ -7,3 +7,15 @@
     });
 </script>
 
+<!-- Deps start here -->
+<script type="text/javascript">
+    require(['DependencyOne'], function(DependencyOne) {
+        console.log(DependencyOne.name);
+    });
+    require(['DependencyTwo'], function(DependencyTwo) {
+        console.log(DependencyTwo.name);
+    });
+    require(['DepsMain'], function(DepsMain) {
+        DepsMain.init(); // Initialize the module
+    });
+</script>

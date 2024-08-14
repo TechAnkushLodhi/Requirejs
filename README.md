@@ -148,6 +148,8 @@ var config = {
         },
         
         // Specific mapping for 'specialModule'
+        // This is not magento madule, this Js module specialModule means : When you use define in a JavaScript file, you are creating a module. This module can include dependencies and 
+        // return an object or function.
         'specialModule': {
             // Override 'originalModule' used within 'specialModule' to use 'replacement-module'
             'originalModule': 'Development_Maping/js/replacement-module'
